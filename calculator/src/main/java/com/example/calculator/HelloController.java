@@ -1,5 +1,4 @@
 package com.example.calculator;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -7,13 +6,18 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
     private Text mainNumber, result;
     @FXML
+    //Window buttons
+    private ImageView minimizeButton, closeButton;
+
     //0-9 Buttons
-    private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert;
+    private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
     private Pane plusButton, subButton, prodButton, divButton;
 
@@ -33,7 +37,8 @@ public class HelloController {
 
 
         //Edge cases
-        if(num.equals("0")){
+        if(num.equals("0") && !id.equals("decimalButton")){
+            System.out.println("gothere");
             mainNumber.setText(id.substring(id.length() - 1));
             return;
         }
@@ -71,9 +76,38 @@ public class HelloController {
             case "numButton9":
                 mainNumber.setText(num + "9");
                 break;
+            case "decimalButton":
+                int count = num.length() - num.replace(".", "").length();
+                if(count == 0) {
+                    System.out.println(num);
+                    mainNumber.setText(num + ".");
+                }
+                break;
         }
 
 
+    }
+
+    //Simple event for closing and minimizing windows (Viacrusis)
+    @FXML
+    void windowButton(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        System.out.println("AASD");
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+
+        switch(id){
+            case "closeButton":
+                System.out.println("Close");
+                stage.close();
+                break;
+            case"minimizeButton":
+                System.out.println("Minimize");
+                stage.setIconified(true);
+                break;
+        }
+        // do what you have to do
     }
 
     @FXML
