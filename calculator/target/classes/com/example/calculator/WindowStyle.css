@@ -1,0 +1,63 @@
+.root{
+    -fx-background-color: rgb(32,32,32, 0.9);
+    -fx-background-radius: 28;
+}
+
+.backgroundPane{
+    -fx-background-color: linear-gradient(to bottom right, rgb(31, 31, 31,0.5), rgb(15, 16, 17,0.5) 100%);
+    -fx-background-radius: 15 15 25 25;
+}
+
+.numText{
+    -fx-color: rgb(254, 0, 0);
+}
+
+.operatorContainer{
+    -fx-background-color: rgba(41, 44, 46, 0.147);
+    -fx-background-radius: 25;
+    -fx-border-style: solid;
+    -fx-border-radius: 25;
+    -fx-border-color: rgb(70, 70, 70);
+}
+
+.buttonBasicOperator{
+    -fx-background-color: rgb(41,44,46, 0);
+    -fx-background-radius: 25;
+}
+
+.buttonNum, .buttonComplx{
+    -fx-border-style: solid;
+    -fx-border-radius: 12;
+}
+
+.buttonBasicFunc{
+    -fx-background-color: rgb(41,44,46, 0.4);
+    -fx-border-color: rgb(70, 70, 70);
+    -fx-border-style: solid;
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+}
+
+.buttonNum{
+    -fx-background-color: rgb(29,32,36, 0.4);
+    -fx-border-color: rgb(37, 40, 46);
+    -fx-background-radius: 12;
+}
+
+.buttonComplx {
+    -fx-background-color: rgba(0, 125, 178, 0.15);
+    -fx-border-color: rgb(0, 107, 178, 0.2);
+    -fx-background-radius: 12;
+}
+
+
+
+.buttonEquals{
+    -fx-background-color: rgba(19, 126, 78, 0.4);
+    -fx-border-color: rgb(16, 99, 62);
+    -fx-background-radius: 50;
+    -fx-border-style: solid;
+    -fx-border-radius: 50;
+}
+
+/* -fx-background-color: rgb(46,49,56); */
