@@ -23,16 +23,41 @@ public class HelloController {
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
-    private Pane plusButton, subButton, prodButton, divButton, equalButton;
+    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton;
 
     //Row 0-2 blue buttons (CJAY)
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
+    @FXML
+    void opacityImage(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
 
+        if(id.equals("closeButton")){
+            closeButton.setOpacity(1);
+        }
+        else{
+            minimizeButton.setOpacity(1);
+        }
+    }
+    @FXML
+    void opacityImageRemove(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+
+        if(id.equals("closeButton")){
+            closeButton.setOpacity(0.8);
+        }
+        else{
+            minimizeButton.setOpacity(0.8);
+        }
+    }
+    
 
     //---EQUATION EVALUATOR---
 
     //Main python caller
-
     String equationProcessor(){
         String num = mainNumber.getText();
         try {
@@ -56,10 +81,9 @@ public class HelloController {
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return "Error: " + e.getMessage();
+            return "Invalid Equation";
         }
     }
-    
     @FXML
     void equalEval(MouseEvent event){
         System.out.println(equationProcessor());
@@ -71,7 +95,7 @@ public class HelloController {
 
 
     @FXML
-        //Event for button 0 - 9 (Viacrusis)
+    //Event for button 0 - 9 (Viacrusis)
     void clickedNum(MouseEvent event) {
         //Get the button that called the function    <------   USE THIS TO GET SOURCE OF EVENT CALLER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Object source2 = event.getSource();
@@ -123,24 +147,28 @@ public class HelloController {
                 break;
             case "decimalButton":
                 //This disgusting code essentially checks if the current number in the equation has a decimal point.
+                char lastChar = num.charAt(num.length() - 1);
+                //Edge cases
+                if(lastChar == '.'){return;} //If last char has decimal
+                else if(!Character.isDigit(lastChar)){ //If last char is not a number, allow decimal
+                    mainNumber.setText(num + '.');
+                    return;
+                }
 
-                int first = 0;
-                Boolean toStart = false;
-                for (int i = num.length() - 1; i >= 0; i--){
-                    if(Character.isDigit(num.charAt(i)) && toStart == false){
-                        toStart = true;
-                        continue;
-                    }
-                    if ((!Character.isDigit(num.charAt(i)) && num.charAt(i) != '.')&& toStart == true){
-                        first = i + 1;
-                        break;
+                //In an event that it is a digit, extract the current number typed.
+                int rightIdx = num.length() - 1;
+                int leftIdx = 0;
+                for(int i = num.length() - 1; i >= 0; i--){
+                    char currChar = num.charAt(i);
+
+                    if(!Character.isDigit(currChar) && (currChar != '.')){
+                        leftIdx = i + 1;
                     }
                 }
-                String latestDigit = num.substring(first, num.length());
-                if(!latestDigit.contains(".")) {
-                    mainNumber.setText(num + ".");
+                String currentNum = num.substring(leftIdx, rightIdx);
+                if(!currentNum.contains(".")){
+                    mainNumber.setText(num + '.');
                 }
-                break;
         }
 
 
@@ -210,9 +238,12 @@ public class HelloController {
         String num = mainNumber.getText();
 
         char lastChar = num.charAt(num.length() - 1);
-        if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/'){
-            return;
-        }
+        
+        if(lastChar == '.'){
+            mainNumber.setText(num + "0");
+            num = mainNumber.getText();
+        } //Auto places zero if last number ends with a decimal
+        if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/'){return;} //Prevents operation duplicates
 
         switch(id){
             case "plusButton":

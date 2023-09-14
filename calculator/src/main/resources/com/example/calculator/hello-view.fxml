@@ -14,12 +14,12 @@
    <children>
       <Pane prefHeight="32.0" prefWidth="420.0" translateZ="1.0">
          <children>
-            <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="19.0" layoutX="361.0" layoutY="5.0" onMouseClicked="#windowButton" pickOnBounds="true" preserveRatio="true" scaleZ="5.0" translateZ="5.0">
+            <ImageView fx:id="closeButton" fitHeight="19.0" fitWidth="19.0" layoutX="361.0" layoutY="5.0" onMouseClicked="#windowButton" onMouseEntered="#opacityImage" onMouseExited="#opacityImageRemove" opacity="0.8" pickOnBounds="true" preserveRatio="true" scaleZ="5.0" styleClass="imageButtons" translateZ="5.0">
                <image>
                   <Image url="@icon/close.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="minimizeButton" fitHeight="19.0" fitWidth="19.0" layoutX="330.0" layoutY="5.0" onMouseClicked="#windowButton" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="minimizeButton" fitHeight="19.0" fitWidth="19.0" layoutX="330.0" layoutY="5.0" onMouseClicked="#windowButton" onMouseEntered="#opacityImage" onMouseExited="#opacityImageRemove" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
                <image>
                   <Image url="@icon/hide.png" />
                </image>
@@ -192,7 +192,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="rootButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="√" textAlignment="CENTER" textFill="WHITE">
                            <font>
