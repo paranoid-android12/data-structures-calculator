@@ -237,13 +237,23 @@ public class HelloController {
         String id = node.getId();
         String num = mainNumber.getText();
 
-        char lastChar = num.charAt(num.length() - 1);
-        
-        if(lastChar == '.'){
+        // char lastChar = num.charAt(num.length() - 1);
+        String lastChar = num.substring(num.length() - 1);
+
+        // Nag experiment ako ng onti since kailangan i adjust yung buong condition para // kasi consider siya 
+        // as string so uncomment mo nalang yung original logic pero gumagana yang string version maliban lang sa  % at //
+
+        // if(lastChar == '.'){
+        //     mainNumber.setText(num + "0");
+        //     num = mainNumber.getText();
+        // } //Auto places zero if last number ends with a decimal
+        // if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/' || lastChar == '%'){return;} //Prevents operation duplicates
+
+        if(lastChar == "."){
             mainNumber.setText(num + "0");
             num = mainNumber.getText();
         } //Auto places zero if last number ends with a decimal
-        if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/'){return;} //Prevents operation duplicates
+        if(lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("*") || lastChar.equals("/") || lastChar.equals("%") || lastChar.equals("//")){return;} //Prevents operation duplicates
 
         switch(id){
             case "plusButton":
@@ -258,6 +268,12 @@ public class HelloController {
             case "divButton":
                 mainNumber.setText(num + "/");
                 break;
+            case "modulusButton":
+                mainNumber.setText(num + "%");
+                break;
+            case "floordivButton":
+                mainNumber.setText(num + "//");
+                break;
         }
     }
 
@@ -271,6 +287,12 @@ public class HelloController {
         String id = node.getId(); // <----- ITO YUNG STRING VERSION NG BUTTON NA PININDOT PARA MACALL TONG FUNCTION. USED FOR SWITCH CASES.
         String num = mainNumber.getText(); // <--- ITO YUNG MAIN DISPLAY CURRENTLY, PARSED NA SA STRING.
 
+        /*
+         *  Issue:
+         *  Can't type any equation after the ceil and floor
+         * 
+         *  factorial is isunod ko bukas need ko mag isip ng workaround jan
+         */
         switch (id) {
             case ("floorButton"):
                 mainNumber.setText("math.floor(" + num + ")");
