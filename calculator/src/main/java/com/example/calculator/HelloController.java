@@ -19,11 +19,16 @@ public class HelloController {
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
-    private Pane plusButton, subButton, prodButton, divButton;
+    private Pane plusButton, subButton, prodButton, divButton, equalButton;
 
     //Row 0-2 blue buttons (CJAY)
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
 
+
+    @FXML
+    void equationProcessor(MouseEvent event){
+
+    }
     @FXML
         //Event for button 0 - 9 (Viacrusis)
     void clickedNum(MouseEvent event) {
@@ -38,7 +43,6 @@ public class HelloController {
 
         //Edge cases
         if(num.equals("0") && !id.equals("decimalButton")){
-            System.out.println("gothere");
             mainNumber.setText(id.substring(id.length() - 1));
             return;
         }
@@ -77,9 +81,22 @@ public class HelloController {
                 mainNumber.setText(num + "9");
                 break;
             case "decimalButton":
-                int count = num.length() - num.replace(".", "").length();
-                if(count == 0) {
-                    System.out.println(num);
+                //This disgusting code essentially checks if the current number in the equation has a decimal point.
+
+                int first = 0;
+                Boolean toStart = false;
+                for (int i = num.length() - 1; i >= 0; i--){
+                    if(Character.isDigit(num.charAt(i)) && toStart == false){
+                        toStart = true;
+                        continue;
+                    }
+                    if ((!Character.isDigit(num.charAt(i)) && num.charAt(i) != '.')&& toStart == true){
+                        first = i + 1;
+                        break;
+                    }
+                }
+                String latestDigit = num.substring(first, num.length());
+                if(!latestDigit.contains(".")) {
                     mainNumber.setText(num + ".");
                 }
                 break;
@@ -94,16 +111,13 @@ public class HelloController {
         Object source2 = event.getSource();
         Node node = (Node) source2;
         String id = node.getId();
-        System.out.println("AASD");
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
 
         switch(id){
             case "closeButton":
-                System.out.println("Close");
                 stage.close();
                 break;
             case"minimizeButton":
-                System.out.println("Minimize");
                 stage.setIconified(true);
                 break;
         }
@@ -154,9 +168,23 @@ public class HelloController {
         String id = node.getId();
         String num = mainNumber.getText();
 
+        char lastChar = num.charAt(num.length() - 1);
+        if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/'){
+            return;
+        }
+
         switch(id){
             case "plusButton":
                 mainNumber.setText(num + "+");
+                break;
+            case "subButton":
+                mainNumber.setText(num + "-");
+                break;
+            case "prodButton":
+                mainNumber.setText(num + "*");
+                break;
+            case "divButton":
+                mainNumber.setText(num + "/");
                 break;
         }
     }
