@@ -1,2 +1,3 @@
-# data-structures-calculator
-an advanced calculator via javafx and scenebuilder
+# Advanced Calculator (Data Structures)
+
+An advanced calculator built in JavaFX.
