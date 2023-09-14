@@ -271,7 +271,23 @@ public class HelloController {
         String id = node.getId(); // <----- ITO YUNG STRING VERSION NG BUTTON NA PININDOT PARA MACALL TONG FUNCTION. USED FOR SWITCH CASES.
         String num = mainNumber.getText(); // <--- ITO YUNG MAIN DISPLAY CURRENTLY, PARSED NA SA STRING.
 
-        switch (id){
-        }
-    }
+        switch (id) {
+            case ("floorButton"):
+                mainNumber.setText("math.floor(" + num + ")");
+                equalEval(event);
+                break;
+                case ("ceilingButton"):
+                mainNumber.setText("math.ceil("+ num + ")");
+                equalEval(event);
+                break;
+            case ("floordivButton"):
+                mainNumber.setText(num + "//");
+                break;
+            case ("modulusButton"):
+                mainNumber.setText(num + "%");
+                break;
+            case ("factorialButton"): 
+                mainNumber.setText(num + "!");
+                break;
+        }    }
 }
