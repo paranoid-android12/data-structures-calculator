@@ -257,7 +257,7 @@
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="x^y" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="x²" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
