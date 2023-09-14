@@ -291,7 +291,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="equalButton" onMouseClicked="#equationProcessor" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="equalButton" onMouseClicked="#equalEval" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="=" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -458,7 +458,7 @@
                         <Font size="58.0" />
                      </font>
                   </Text>
-                  <Text fx:id="result" fill="#c4c4c4" layoutX="160.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 0" textAlignment="RIGHT" wrappingWidth="214.4000000000001">
+                  <Text fx:id="result" fill="#c4c4c4" layoutX="17.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 0" textAlignment="RIGHT" wrappingWidth="355.4000000000001">
                      <font>
                         <Font size="33.0" />
                      </font>

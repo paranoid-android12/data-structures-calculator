@@ -9,6 +9,10 @@ import javafx.scene.text.Text;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class HelloController {
     @FXML
     private Text mainNumber, result;
@@ -25,10 +29,47 @@ public class HelloController {
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
 
 
-    @FXML
-    void equationProcessor(MouseEvent event){
+    //---EQUATION EVALUATOR---
 
+    //Main python caller
+
+    String equationProcessor(){
+        String num = mainNumber.getText();
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "evaluator.py", num);
+            processBuilder.redirectErrorStream(true);
+
+            Process process = processBuilder.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+            
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                return output.toString();
+            } else {
+                throw new IOException("Python script execution failed");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return "Error: " + e.getMessage();
+        }
     }
+    
+    @FXML
+    void equalEval(MouseEvent event){
+        System.out.println(equationProcessor());
+        result.setText("= " + equationProcessor());
+        return;
+    }
+
+    //---EQUATION EVALUATOR---
+
+
     @FXML
         //Event for button 0 - 9 (Viacrusis)
     void clickedNum(MouseEvent event) {
@@ -132,7 +173,7 @@ public class HelloController {
         Node node = (Node) source2;
         String id = node.getId();
         String num = mainNumber.getText();
-
+        System.out.println("I was called");
         if(num.equals("0")){return;}
 
         switch(id){
