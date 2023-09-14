@@ -1,4 +1,5 @@
 import sys
+import math
 
 try:
     #Initializes mainNum
@@ -10,7 +11,6 @@ try:
     if mainNum[-1] in ('+', '-', '*', '/', '.'): mainNum = mainNum[:-1] #If left out operations exist
     if mainNum[-1] == '.': mainNum = mainNum[:-1] + '0'            #If last value is a decimal
         
-    
     #Evaluate the string
     result = eval(mainNum)
 
