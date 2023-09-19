@@ -15,7 +15,11 @@ import java.io.InputStreamReader;
 
 public class HelloController {
     @FXML
-    private Text mainNumber, result;
+    private Text mainNumber, subNumber;
+    private Double currentResult = 0.0;
+    private boolean justOperated = false;
+    private boolean justEqualed = false;
+    private String allSubNumTemp;
     @FXML
     //Window buttons
     private ImageView minimizeButton, closeButton;
@@ -27,6 +31,8 @@ public class HelloController {
 
     //Row 0-2 blue buttons (CJAY)
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
+
+    //For exit and minimize button design
     @FXML
     void opacityImage(MouseEvent event){
         Object source2 = event.getSource();
@@ -53,128 +59,6 @@ public class HelloController {
             minimizeButton.setOpacity(0.8);
         }
     }
-    
-
-    //---EQUATION EVALUATOR---
-
-    //Main python caller
-    String equationProcessor(){
-        String num = mainNumber.getText();
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "evaluator.py", num);
-            processBuilder.redirectErrorStream(true);
-
-            Process process = processBuilder.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-            
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                return output.toString();
-            } else {
-                throw new IOException("Python script execution failed");
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-            return "Invalid Equation";
-        }
-    }
-    @FXML
-    void equalEval(MouseEvent event){
-        System.out.println(equationProcessor());
-        result.setText("= " + equationProcessor());
-        return;
-    }
-
-    //---EQUATION EVALUATOR---
-
-
-    @FXML
-    //Event for button 0 - 9 (Viacrusis)
-    void clickedNum(MouseEvent event) {
-        //Get the button that called the function    <------   USE THIS TO GET SOURCE OF EVENT CALLER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Object source2 = event.getSource();
-        Node node = (Node) source2;
-        String id = node.getId();
-
-        //Parse mainNumber to String
-        String num = mainNumber.getText();
-
-
-        //Edge cases
-        if(num.equals("0") && !id.equals("decimalButton")){
-            mainNumber.setText(id.substring(id.length() - 1));
-            return;
-        }
-        else if (num.length() > 10) {return;}
-
-
-        switch(id){
-            case "numButton0":
-                mainNumber.setText(num + "0");
-                break;
-            case "numButton1":
-                mainNumber.setText(num + "1");
-                break;
-            case "numButton2":
-                mainNumber.setText(num + "2");
-                break;
-            case "numButton3":
-                mainNumber.setText(num + "3");
-                break;
-            case "numButton4":
-                mainNumber.setText(num + "4");
-                break;
-            case "numButton5":
-                mainNumber.setText(num + "5");
-                break;
-            case "numButton6":
-                mainNumber.setText(num + "6");
-                break;
-            case "numButton7":
-                mainNumber.setText(num + "7");
-                break;
-            case "numButton8":
-                mainNumber.setText(num + "8");
-                break;
-            case "numButton9":
-                mainNumber.setText(num + "9");
-                break;
-            case "decimalButton":
-                //This disgusting code essentially checks if the current number in the equation has a decimal point.
-                char lastChar = num.charAt(num.length() - 1);
-                //Edge cases
-                if(lastChar == '.'){return;} //If last char has decimal
-                else if(!Character.isDigit(lastChar)){ //If last char is not a number, allow decimal
-                    mainNumber.setText(num + '.');
-                    return;
-                }
-
-                //In an event that it is a digit, extract the current number typed.
-                int rightIdx = num.length() - 1;
-                int leftIdx = 0;
-                for(int i = num.length() - 1; i >= 0; i--){
-                    char currChar = num.charAt(i);
-
-                    if(!Character.isDigit(currChar) && (currChar != '.')){
-                        leftIdx = i + 1;
-                    }
-                }
-                String currentNum = num.substring(leftIdx, rightIdx);
-                if(!currentNum.contains(".")){
-                    mainNumber.setText(num + '.');
-                }
-        }
-
-
-    }
-
-    //Simple event for closing and minimizing windows (Viacrusis)
     @FXML
     void windowButton(MouseEvent event){
         Object source2 = event.getSource();
@@ -193,19 +77,104 @@ public class HelloController {
         // do what you have to do
     }
 
+
+
+
+    //Processes currentResult and value of current display in mainNum
+    void equationProcessor(){
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+        //Lazy solution that just checks the operation by latest char of the subNum
+        String operation = (subNum.charAt(subNum.length()-1)) + "";
+        
+        //Main processor of the previous equation.
+        switch (operation){
+            case "+": currentResult = currentResult + Double.parseDouble(num); break;
+            case "-": currentResult = currentResult - Double.parseDouble(num); break;
+            case "*": currentResult = currentResult * Double.parseDouble(num); break;
+            case "/": //Case for both division and floor division
+                //Floor division
+                if(subNum.charAt(subNum.length()-2) == '/'){
+                        Double tempResult = Math.floor(currentResult / Double.parseDouble(num));
+                        currentResult = tempResult;
+                }
+
+                //Normal division
+                else{
+                    currentResult = currentResult / Double.parseDouble(num);
+                }
+                break;
+            
+            case "%":
+                currentResult = currentResult % Double.parseDouble(num);
+                break;
+        }
+        System.out.println("CurreRes: " + currentResult);
+        System.out.println("justOperated: " + justOperated);
+        System.out.println("justEqualed: " + justEqualed);
+        System.out.println("");
+        return;
+    }
+
+
+
     @FXML
-        //Event for button DEL, AC, +/- (Viacrusis)
+    //Event for button 0 - 9 (Viacrusis)
+    void clickedNum(MouseEvent event) {
+        //Get the button that called the function    <------   USE THIS TO GET SOURCE OF EVENT CALLER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        //Parse mainNum/ber to String
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+        String digit = id.charAt(id.length()-1) + "";
+
+        //Decimal button process
+        if(id.equals("decimalButton")){
+            if(!num.contains(".")){
+                mainNumber.setText(num + ".");
+            }
+            justOperated = false;
+        }
+
+        //If it's first number, just replace zero with current num.
+        else if(num.equals("0")){ 
+            mainNumber.setText(id.substring(id.length() - 1));
+            justOperated = false;
+        }
+
+        //If operation was just clicked, replace the current display with a new number at first numberclick
+        else if(justOperated == true){ 
+            mainNumber.setText(digit);
+            justOperated = false;
+        }
+
+        //Apply number as is
+        else { 
+            mainNumber.setText(num + digit);
+        }
+    }
+
+    @FXML
+    //Event for button DEL, AC, +/-
     void delAcInvert(MouseEvent event){
         //Get event caller, and parse mainNumber to String.
         Object source2 = event.getSource();
         Node node = (Node) source2;
         String id = node.getId();
         String num = mainNumber.getText();
-        System.out.println("I was called");
-        if(num.equals("0")){return;}
 
+        //Resets calculator if delete was pressed while current number is zero.
+        if(num.equals("0")){
+            subNumber.setText("");
+            currentResult = 0.0;
+            return;
+        }
+    
         switch(id){
             case("numDelete"):
+
                 if(num.length() < 2){mainNumber.setText("0");}
                 else{
                     num = num.substring(0, num.length() - 1);
@@ -226,9 +195,21 @@ public class HelloController {
                 else{mainNumber.setText("-" + num);}
 
         }
+        justOperated = false;
+        justEqualed = false;
     }
 
-    //Event for basic operands + - * / . (Viacrusis)
+    //Processes facorial value of mainNumber
+    int Factorize(int num){
+        int prod = 1;
+
+        for(int i = num; i > 0; i--){
+            prod = prod * i;
+        }
+        return prod;
+    }
+
+    //Event for basic operands with same functionalities (operations other than the four operations are also included long as it doesn't merit a unique "mode" of some sort)
     @FXML
     void basicOperations(MouseEvent event){
         //Get event caller, and parse mainNumber to String.
@@ -236,80 +217,125 @@ public class HelloController {
         Node node = (Node) source2;
         String id = node.getId();
         String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+        String symbol = "";
 
-        // char lastChar = num.charAt(num.length() - 1);
-        String lastChar = num.substring(num.length() - 1);
-
-        // Nag experiment ako ng onti since kailangan i adjust yung buong condition para // kasi consider siya 
-        // as string so uncomment mo nalang yung original logic pero gumagana yang string version maliban lang sa  % at //
-
-        // if(lastChar == '.'){
-        //     mainNumber.setText(num + "0");
-        //     num = mainNumber.getText();
-        // } //Auto places zero if last number ends with a decimal
-        // if(lastChar == '+' || lastChar == '-' || lastChar == '*' || lastChar == '/' || lastChar == '%'){return;} //Prevents operation duplicates
-
-        if(lastChar == "."){
-            mainNumber.setText(num + "0");
-            num = mainNumber.getText();
-        } //Auto places zero if last number ends with a decimal
-        if(lastChar.equals("+") || lastChar.equals("-") || lastChar.equals("*") || lastChar.equals("/") || lastChar.equals("%") || lastChar.equals("//")){return;} //Prevents operation duplicates
-
+        //Checks the user input symbol to pass on the equationProcessor for later.
         switch(id){
-            case "plusButton":
-                mainNumber.setText(num + "+");
-                break;
-            case "subButton":
-                mainNumber.setText(num + "-");
-                break;
-            case "prodButton":
-                mainNumber.setText(num + "*");
-                break;
-            case "divButton":
-                mainNumber.setText(num + "/");
-                break;
-            case "modulusButton":
-                mainNumber.setText(num + "%");
-                break;
-            case "floordivButton":
-                mainNumber.setText(num + "//");
-                break;
+            case "plusButton": symbol = "+"; break;
+            case "subButton": symbol = "-"; break;
+            case "prodButton": symbol = "*"; break;
+            case "divButton": symbol = "/"; break;
+            case "floordivButton": symbol = "//"; break;
+            case "modulusButton": symbol = "%"; break;
+
         }
+
+        //Edge case: Proceeds to normal mode after the user had just clicked an operation after the equal button.
+        if (justEqualed == true){
+            subNumber.setText(num + symbol);
+            justEqualed = false;
+            justOperated = true;
+            return;
+        }
+
+        //justOperated mode: Allows user to change operations after the current total result has just been displayed.
+        else if(justOperated == true){
+            //Edge case for //
+            if(subNum.charAt(subNum.length()-2) == '/'){
+                subNum = subNum.substring(0, subNum.length()-2);
+            }
+            //Case for normal symbols
+            else{
+                subNum = subNum.substring(0, subNum.length()-1);
+            }
+            subNumber.setText(subNum + symbol);
+            return;
+        } 
+
+        //Calculate mainNumber and currentResult (DEFAULT CASE)
+        else if(!subNum.equals("")){
+            equationProcessor();
+        } 
+
+        //If subNum is empty, just initialize currentResult based on first number input
+        else{ 
+            currentResult = Double.parseDouble(num);
+        }
+
+        //Updates subNumber with new result and operation.
+        subNumber.setText(subNum + num + symbol);
+
+        //Displays whole number if there's no decimal in answer
+        if(currentResult % 1 == 0){mainNumber.setText(String.format("%.0f", currentResult));}
+        else{mainNumber.setText(String.format("%.6f", currentResult));}
+
+        //EXPLANATION OF THIS LINE IS ON uniqueOperations function at the bottom.
+        justOperated = true;
     }
 
-    //Event for row 0-2 FLR,CEIL,INT,//,%,N! (Landero)
+    //Equal button (simplified this to just display and i removed stacking because it's hell to program)
     @FXML
-    void rowTwoBlues(MouseEvent event){
+    void equalOperator(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+        
+        equationProcessor();
+        subNumber.setText("");
+        mainNumber.setText("" + currentResult);
+
+        justEqualed = true;
+    }
+
+    //Functions for complex buttons with unique "modes" or properties that makes me want to ywahoo myself off the building
+    //Or just make a new function for really unique buttons.
+    @FXML
+    void uniqueOperations(MouseEvent event){
         //Get event caller, and parse mainNumber to String.
         Object source2 = event.getSource();
         Node node = (Node) source2;
+        String id = node.getId();
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
 
-        String id = node.getId(); // <----- ITO YUNG STRING VERSION NG BUTTON NA PININDOT PARA MACALL TONG FUNCTION. USED FOR SWITCH CASES.
-        String num = mainNumber.getText(); // <--- ITO YUNG MAIN DISPLAY CURRENTLY, PARSED NA SA STRING.
+        switch (id){
+            case "factorialButton":
+                subNumber.setText(allSubNumTemp);
+                mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                break;
 
-        /*
-         *  Issue:
-         *  Can't type any equation after the ceil and floor
-         * 
-         *  factorial is isunod ko bukas need ko mag isip ng workaround jan
-         */
-        switch (id) {
-            case ("floorButton"):
-                mainNumber.setText("math.floor(" + num + ")");
-                equalEval(event);
+            //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
+            case "floorButton":
+                subNumber.setText("floor(" + (subNum) + ")+");
+                currentResult = Math.floor(currentResult);
+                mainNumber.setText(currentResult + "");
                 break;
-                case ("ceilingButton"):
-                mainNumber.setText("math.ceil("+ num + ")");
-                equalEval(event);
+            case "ceilingButton":
+                subNumber.setText("ceil(" + (subNum) + ")+");
+                currentResult = Math.ceil(currentResult);
+                mainNumber.setText(currentResult + "");
                 break;
-            case ("floordivButton"):
-                mainNumber.setText(num + "//");
+            case "integerButton":
+                subNumber.setText("int(" + (subNum) + ")+");
+                currentResult = Math.floor(currentResult);
+                mainNumber.setText(currentResult + "");
                 break;
-            case ("modulusButton"):
-                mainNumber.setText(num + "%");
-                break;
-            case ("factorialButton"): 
-                mainNumber.setText(num + "!");
-                break;
-        }    }
+
+        }
+
+        //This is a VERY IMPORTANT line. 
+        //When the user types a number and clicks a new operation, it shows the current result of the calculations so far on the mainNumber.
+        //This in turn, makes justOperated true.
+
+        //WHEN THIS IS TRUE:
+        //The user's next number input replaces the answer display on the mainNumber, and returns to normal mode by turning it false.
+        //This also allows the user to freely change the operation.
+        //This becomes false when the user enters a number.
+        justOperated = true;
+        System.out.println(currentResult);
+    }
+
 }

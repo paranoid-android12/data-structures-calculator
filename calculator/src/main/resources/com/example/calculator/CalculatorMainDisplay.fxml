@@ -66,7 +66,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="floorButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="floorButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="FLR" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -75,7 +75,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="ceilingButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="ceilingButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="CEIL" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -84,7 +84,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="integerButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="integerButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="INT" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -129,7 +129,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="floordivButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="floordivButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="//" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -138,7 +138,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="modulusButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="modulusButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="\%" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -147,7 +147,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="factorialButton" onMouseClicked="#rowTwoBlues" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="N!" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -212,9 +212,19 @@
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="∑" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="43.0" prefWidth="26.0" text="∑" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Calibri" size="18.0" />
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="26.0" prefWidth="19.0" text="A" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="2.0" prefHeight="26.0" prefWidth="19.0" text="B" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
                            </font>
                         </Label>
                      </children>
@@ -266,18 +276,38 @@
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="x^y^z" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="9.0" prefHeight="26.0" prefWidth="19.0" text="x" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Calibri" size="13.0" />
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="9.0" prefHeight="19.0" prefWidth="19.0" text="Y" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="2.0" prefHeight="19.0" prefWidth="19.0" text="Z" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="LOL" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="43.0" prefWidth="26.0" text="Π" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Calibri" size="18.0" />
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="16.0" prefHeight="26.0" prefWidth="19.0" text="A" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="2.0" prefHeight="26.0" prefWidth="19.0" text="B" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
                            </font>
                         </Label>
                      </children>
@@ -291,7 +321,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="equalButton" onMouseClicked="#equalEval" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="equalButton" onMouseClicked="#equalOperator" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="=" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -311,18 +341,68 @@
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="LMAO" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="26.0" text="∑" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Calibri" size="18.0" />
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="22.0" prefHeight="19.0" prefWidth="10.0" text="A" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="1.0" prefHeight="26.0" prefWidth="10.0" text="B" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="23.0" prefHeight="43.0" prefWidth="32.0" text="∑" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="22.0" prefHeight="19.0" prefWidth="10.0" text="C" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="53.0" layoutY="1.0" prefHeight="26.0" prefWidth="10.0" text="D" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="LMAO" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1.0" prefHeight="43.0" prefWidth="26.0" text="Π" textAlignment="CENTER" textFill="WHITE">
                            <font>
-                              <Font name="Calibri" size="18.0" />
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="16.0" prefHeight="26.0" prefWidth="19.0" text="A" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="21.0" layoutY="1.0" prefHeight="26.0" prefWidth="19.0" text="B" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="27.0" prefHeight="43.0" prefWidth="26.0" text="Π" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="16.0" prefHeight="26.0" prefWidth="19.0" text="C" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="1.0" prefHeight="26.0" prefWidth="19.0" text="D" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="10.0" />
                            </font>
                         </Label>
                      </children>
@@ -338,7 +418,7 @@
                   </Pane>
                   <Pane prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="log2 x" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="log₂ x" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -426,7 +506,19 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css" />
+                  <Pane prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="9.0" prefHeight="26.0" prefWidth="10.0" text="X" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="7.0" prefHeight="19.0" prefWidth="10.0" text="Y" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                   <Pane prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="Cx" textAlignment="CENTER" textFill="WHITE">
@@ -445,7 +537,19 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css" />
+                  <Pane prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" prefHeight="43.0" prefWidth="19.0" text="X" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="5.0" prefHeight="19.0" prefWidth="19.0" text="C" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="12.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -453,14 +557,14 @@
             </FlowPane>
             <Pane layoutX="10.0" layoutY="7.0" opacity="0.77" prefHeight="146.0" prefWidth="389.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
                <children>
-                  <Text fx:id="mainNumber" fill="WHITE" layoutX="13.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="363.13671875">
+                  <Text fx:id="mainNumber" fill="WHITE" layoutX="12.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="365.7366943359375">
                      <font>
-                        <Font size="58.0" />
+                        <Font size="40.0" />
                      </font>
                   </Text>
-                  <Text fx:id="result" fill="#c4c4c4" layoutX="17.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 0" textAlignment="RIGHT" wrappingWidth="355.4000000000001">
+                  <Text fx:id="subNumber" fill="#c4c4c4" layoutX="21.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="353.5999999999999">
                      <font>
-                        <Font size="33.0" />
+                        <Font size="27.0" />
                      </font>
                   </Text>
                </children></Pane>
