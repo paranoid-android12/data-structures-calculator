@@ -209,6 +209,7 @@ public class HelloController {
         return prod;
     }
 
+
     //Event for basic operands with same functionalities (operations other than the four operations are also included long as it doesn't merit a unique "mode" of some sort)
     @FXML
     void basicOperations(MouseEvent event){
@@ -300,11 +301,17 @@ public class HelloController {
         String id = node.getId();
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
-
+        
         switch (id){
             case "factorialButton":
                 subNumber.setText(allSubNumTemp);
                 mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                break;
+
+            case "rootButton": 
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.sqrt(currentResult) + "");
                 break;
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.

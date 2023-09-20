@@ -192,7 +192,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="rootButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cubeRootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="√" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -201,7 +201,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="∛" textAlignment="CENTER" textFill="WHITE">
                            <font>
