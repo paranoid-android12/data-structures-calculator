@@ -27,7 +27,7 @@ public class HelloController {
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
-    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton;
+    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button;
 
     //Row 0-2 blue buttons (CJAY)
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
@@ -324,6 +324,18 @@ public class HelloController {
                 subNumber.setText(subNum);
                 currentResult = Double.parseDouble(num);
                 mainNumber.setText(Math.pow(currentResult, 2) + "");
+                break;
+
+            case "log2Button":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.log(currentResult) / Math.log(2) + "");
+                break;
+
+            case "log10Button":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.log(currentResult) / Math.log(10) + "");
                 break;
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
