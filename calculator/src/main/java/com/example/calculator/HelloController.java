@@ -27,7 +27,7 @@ public class HelloController {
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
-    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton;
+    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button;
 
     //Row 0-2 blue buttons (CJAY)
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
@@ -209,6 +209,7 @@ public class HelloController {
         return prod;
     }
 
+
     //Event for basic operands with same functionalities (operations other than the four operations are also included long as it doesn't merit a unique "mode" of some sort)
     @FXML
     void basicOperations(MouseEvent event){
@@ -300,11 +301,41 @@ public class HelloController {
         String id = node.getId();
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
-
+        
         switch (id){
             case "factorialButton":
                 subNumber.setText(allSubNumTemp);
                 mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                break;
+
+            case "rootButton": 
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.sqrt(currentResult) + "");
+                break;
+
+            case "cubeRootButton":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.cbrt(currentResult) + "");
+                break;
+
+            case "squareButton":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.pow(currentResult, 2) + "");
+                break;
+
+            case "log2Button":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.log(currentResult) / Math.log(2) + "");
+                break;
+
+            case "log10Button":
+                subNumber.setText(subNum);
+                currentResult = Double.parseDouble(num);
+                mainNumber.setText(Math.log(currentResult) / Math.log(10) + "");
                 break;
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
