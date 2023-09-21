@@ -16,9 +16,9 @@ public class HelloController {
     @FXML
     private Text mainNumber, subNumber, variableDisplay;
     private Double currentResult = 0.0, a=0.0, b=0.0, c=0.0, d=0.0;
+    private String varToSet = "";
     private boolean justOperated = false;
     private boolean justEqualed = false;
-    private String allSubNumTemp;
     @FXML
     //Window buttons
     private ImageView minimizeButton, closeButton;
@@ -28,7 +28,10 @@ public class HelloController {
     //Operation Buttons
     private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button;
 
-    //Row 0-2 blue buttons (CJAY)
+    //Variables
+    private Pane varA, varB, varC, vard, setButton;
+
+    //Row 0-2 blue buttons
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
 
     //For exit and minimize button design
@@ -76,7 +79,72 @@ public class HelloController {
         // do what you have to do
     }
 
+    @FXML
+    void setVariables(MouseEvent event){
+        //Get the button that called the function    <------   USE THIS TO GET SOURCE OF EVENT CALLER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+        String numPure = num.replaceAll("[^0-9.]", "");
+        switch (id) {
+            case "varA":
+                mainNumber.setText("A = " + numPure);
+                varToSet = "a";
+                break;
+            case "varB":
+                mainNumber.setText("B = " + numPure);
+                varToSet = "b";
+                break;
+            case "varC":
+                mainNumber.setText("C = " + numPure);
+                varToSet = "c";
+                break;
+            case "varD":
+                mainNumber.setText("D = " + numPure);
+                varToSet = "d";
+                break;   
+            case "setButton":
+                if(varToSet.equals("a")){a = Double.parseDouble(numPure);}
+                else if(varToSet.equals("b")){b = Double.parseDouble(numPure);}
+                else if(varToSet.equals("c")){c = Double.parseDouble(numPure);}
+                else if(varToSet.equals("d")){d = Double.parseDouble(numPure);}
+                break;  
+        }
+        variableDisplay.setText("A = " + a + "   B = " + b + "   C = " + c + "   D = " + d);
+        justOperated = true;
+    }
 
+    Double summation(Double number){
+        return 0.0;
+    }
+
+    Double product(Double number){
+        return 0.0;
+    }
+
+    @FXML
+    void summationProduct(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+
+        switch(id){
+            case "singleSummation":
+                break;
+            case "singleProduct":
+                break;
+            case "marriedSummation":
+                break;
+            case "marriedProduct":
+                break;
+
+            
+        }
+    }
 
 
     //Processes currentResult and value of current display in mainNum

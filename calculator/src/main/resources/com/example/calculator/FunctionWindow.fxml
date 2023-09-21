@@ -407,18 +407,9 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="setButton" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="setButton" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="214.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="SET" textAlignment="CENTER" textFill="WHITE">
-                           <font>
-                              <Font name="Calibri" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="setButton1" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="FUNCTION" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="214.0" text="SET" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
