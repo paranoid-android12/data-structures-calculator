@@ -8,15 +8,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class HelloController {
     @FXML
-    private Text mainNumber, subNumber;
-    private Double currentResult = 0.0;
+    private Text mainNumber, subNumber, variableDisplay;
+    private Double currentResult = 0.0, a=0.0, b=0.0, c=0.0, d=0.0;
     private boolean justOperated = false;
     private boolean justEqualed = false;
     private String allSubNumTemp;
@@ -199,14 +198,14 @@ public class HelloController {
         justEqualed = false;
     }
 
-    //Processes facorial value of mainNumber
+    //Processes facorial value of mainNumber (I'll include decimals later)
     int Factorize(int num){
-        int prod = 1;
+        int result = 1;
 
         for(int i = num; i > 0; i--){
-            prod = prod * i;
+            result = result * i;
         }
-        return prod;
+        return result;
     }
 
 
@@ -276,6 +275,7 @@ public class HelloController {
     }
 
     //Equal button (simplified this to just display and i removed stacking because it's hell to program)
+    //THIS INCLUDES THE CURRENTLY DISPLAYED NUMBER IN mainNumber
     @FXML
     void equalOperator(MouseEvent event){
         Object source2 = event.getSource();
@@ -304,38 +304,51 @@ public class HelloController {
         
         switch (id){
             case "factorialButton":
-                subNumber.setText(allSubNumTemp);
+                String tempNumFactor = num;
+                mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                equationProcessor();
+                subNumber.setText(subNum + tempNumFactor + "!+");
                 mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
                 break;
 
             case "rootButton": 
-                subNumber.setText(subNum);
-                currentResult = Double.parseDouble(num);
-                mainNumber.setText(Math.sqrt(currentResult) + "");
+                String tempNumRoot = num;
+                mainNumber.setText(Math.sqrt(Double.parseDouble(num)) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "sqrt(" + tempNumRoot + ")+");
+                mainNumber.setText(Math.sqrt(Double.parseDouble(num)) + "");
                 break;
 
             case "cubeRootButton":
-                subNumber.setText(subNum);
-                currentResult = Double.parseDouble(num);
-                mainNumber.setText(Math.cbrt(currentResult) + "");
+                String tempNumCube = num;
+                mainNumber.setText(Math.cbrt(Double.parseDouble(num)) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "cbrt(" + tempNumCube + ")+");
+                mainNumber.setText(Math.cbrt(Double.parseDouble(num)) + "");
                 break;
 
             case "squareButton":
-                subNumber.setText(subNum);
-                currentResult = Double.parseDouble(num);
-                mainNumber.setText(Math.pow(currentResult, 2) + "");
+                String tempNumSquare = num;
+                mainNumber.setText((Double.parseDouble(num)) * (Double.parseDouble(num)) + "");
+                equationProcessor();
+                subNumber.setText(subNum + tempNumSquare +  "^2+");
+                mainNumber.setText((Double.parseDouble(num)) * (Double.parseDouble(num)) + "");
                 break;
 
             case "log2Button":
-                subNumber.setText(subNum);
-                currentResult = Double.parseDouble(num);
-                mainNumber.setText(Math.log(currentResult) / Math.log(2) + "");
+                String tempNumLogTwo = num;
+                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(2))) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "log2(" + tempNumLogTwo +  ")+");
+                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(2))) + "");
                 break;
 
             case "log10Button":
-                subNumber.setText(subNum);
-                currentResult = Double.parseDouble(num);
-                mainNumber.setText(Math.log(currentResult) / Math.log(10) + "");
+                String tempNumLogTen = num;
+                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "log10(" + tempNumLogTen +  ")+");
+                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
                 break;
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.

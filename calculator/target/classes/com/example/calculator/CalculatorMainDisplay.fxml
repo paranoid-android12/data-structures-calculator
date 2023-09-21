@@ -562,9 +562,14 @@
                         <Font size="40.0" />
                      </font>
                   </Text>
-                  <Text fx:id="subNumber" fill="#c4c4c4" layoutX="21.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="353.5999999999999">
+                  <Text fx:id="subNumber" fill="#c4c4c4" layoutX="18.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="353.5999999999999">
                      <font>
                         <Font size="27.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="variableDisplay" fill="#c4c4c4" layoutX="182.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A = 0   B = 0   C = 0   D = 0" textAlignment="CENTER" wrappingWidth="207.0">
+                     <font>
+                        <Font size="14.0" />
                      </font>
                   </Text>
                </children></Pane>
