@@ -192,7 +192,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="cubeRootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="rootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="√" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -201,7 +201,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cubeRootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="∛" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -265,7 +265,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="squareButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="x²" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -274,7 +274,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="multipleExpoButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="9.0" prefHeight="26.0" prefWidth="19.0" text="x" textAlignment="CENTER" textFill="WHITE">
                            <font>
