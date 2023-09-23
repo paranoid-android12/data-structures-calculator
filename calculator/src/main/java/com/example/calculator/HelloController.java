@@ -26,7 +26,7 @@ public class HelloController {
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
-    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button;
+    private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button, factorialPlusButton, factorialDivideButton;
 
     //Variables
     private Pane varA, varB, varC, vard, setButton;
@@ -276,6 +276,15 @@ public class HelloController {
         return result;
     }
 
+    double FactorizeDouble(double num){
+        double result = 1;
+
+        for(double i = num; i > 0; i--){
+            result = result * i;
+        }
+        return result;
+    }
+
 
     //Event for basic operands with same functionalities (operations other than the four operations are also included long as it doesn't merit a unique "mode" of some sort)
     @FXML
@@ -419,11 +428,25 @@ public class HelloController {
                 mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
                 break;
 
+            case "factorialPlusButton":
+                double tempA = FactorizeDouble(a);
+                double tempB = FactorizeDouble(b);
+ 
+                mainNumber.setText((tempA + tempB) + "");
+                break;
+
+            case "factorialDivideButton":
+                double tempC = FactorizeDouble(a);
+                double tempD = FactorizeDouble(b);
+ 
+                mainNumber.setText((tempC / tempD) + "");
+                break;
+
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
             case "floorButton":
                 subNumber.setText("floor(" + (subNum) + ")+");
                 currentResult = Math.floor(currentResult);
-                mainNumber.setText(currentResult + "");
+                mainNumber.setText(currentResult + "");  
                 break;
             case "ceilingButton":
                 subNumber.setText("ceil(" + (subNum) + ")+");
