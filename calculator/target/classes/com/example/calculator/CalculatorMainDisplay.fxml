@@ -479,7 +479,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialPlusButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="a! + b!" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -488,7 +488,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialDivideButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="a! / b!" textAlignment="CENTER" textFill="WHITE">
                            <font>
