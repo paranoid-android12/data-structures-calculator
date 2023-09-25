@@ -1,4 +1,5 @@
 module com.example.calculator {
+    requires org.apache.commons.numbers.gamma;
     requires javafx.controls;
     requires javafx.fxml;
 

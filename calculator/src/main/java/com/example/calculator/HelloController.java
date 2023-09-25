@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+// import org.apache.commons.numbers.gamma.Gamma;
+
+import org.apache.commons.numbers.gamma.Gamma;
+
 
 public class HelloController {
     @FXML
@@ -27,6 +31,9 @@ public class HelloController {
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
     private Pane plusButton, subButton, prodButton, divButton, equalButton, rootButton, cubeRootButton, squareButton, multipleExpoButton, log2Button, log10Button, factorialPlusButton, factorialDivideButton;
+
+    //Unique Operation Buttons
+    private Pane aTimesB, aPlusB, aRaisedB, cTimesD, cPlusD, cRaisedD;
 
     //Variables
     private Pane varA, varB, varC, vard, setButton;
@@ -266,23 +273,10 @@ public class HelloController {
         justEqualed = false;
     }
 
-    //Processes facorial value of mainNumber (I'll include decimals later)
-    int Factorize(int num){
-        int result = 1;
-
-        for(int i = num; i > 0; i--){
-            result = result * i;
-        }
-        return result;
-    }
-
-    double FactorizeDouble(double num){
-        double result = 1;
-
-        for(double i = num; i > 0; i--){
-            result = result * i;
-        }
-        return result;
+    //Allows factorial for both integer and complex numbers
+    double Factorize(double num){
+        // return 0.0;
+        return Gamma.value(num + 1);
     }
 
 
@@ -382,10 +376,10 @@ public class HelloController {
         switch (id){
             case "factorialButton":
                 String tempNumFactor = num;
-                mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                mainNumber.setText(Factorize(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + tempNumFactor + "!+");
-                mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                // mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
                 break;
 
             case "rootButton": 
@@ -393,7 +387,6 @@ public class HelloController {
                 mainNumber.setText(Math.sqrt(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "sqrt(" + tempNumRoot + ")+");
-                mainNumber.setText(Math.sqrt(Double.parseDouble(num)) + "");
                 break;
 
             case "cubeRootButton":
@@ -401,7 +394,6 @@ public class HelloController {
                 mainNumber.setText(Math.cbrt(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "cbrt(" + tempNumCube + ")+");
-                mainNumber.setText(Math.cbrt(Double.parseDouble(num)) + "");
                 break;
 
             case "squareButton":
@@ -409,7 +401,13 @@ public class HelloController {
                 mainNumber.setText((Double.parseDouble(num)) * (Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + tempNumSquare +  "^2+");
-                mainNumber.setText((Double.parseDouble(num)) * (Double.parseDouble(num)) + "");
+                break;
+                
+            case "multipleExpoButton":
+                String tempNumMultiSquare = num;
+                mainNumber.setText(Math.pow(Double.parseDouble(num), Math.pow(a, b)) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "((" + tempNumMultiSquare +  "^A)^B)+");
                 break;
 
             case "log2Button":
@@ -417,7 +415,6 @@ public class HelloController {
                 mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(2))) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "log2(" + tempNumLogTwo +  ")+");
-                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(2))) + "");
                 break;
 
             case "log10Button":
@@ -425,22 +422,55 @@ public class HelloController {
                 mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "log10(" + tempNumLogTen +  ")+");
-                mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
                 break;
 
             case "factorialPlusButton":
-                double tempA = FactorizeDouble(a);
-                double tempB = FactorizeDouble(b);
- 
+                double tempA = Factorize(a);
+                double tempB = Factorize(b);
                 mainNumber.setText((tempA + tempB) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(a!+b!)");
                 break;
 
             case "factorialDivideButton":
-                double tempC = FactorizeDouble(a);
-                double tempD = FactorizeDouble(b);
- 
-                mainNumber.setText((tempC / tempD) + "");
+                double tempDivA = Factorize(a);
+                double tempDivB = Factorize(b);
+                mainNumber.setText((tempDivA / tempDivB) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(a!/b!)");
                 break;
+
+            case "aTimesB":
+                mainNumber.setText((a * b) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(A * B)+");
+                break;
+            case "aPlusB":
+                mainNumber.setText((a + b) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(A + B)+");
+                break;
+            case "aRaisedB":
+                mainNumber.setText(Math.pow(a, b) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(A ^ B)+");
+                break;
+            case "cTimesD":
+                mainNumber.setText((c * d) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(C * D)+");
+                break;
+            case "cPlusD":
+                mainNumber.setText((c + d) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(C + D)+");
+                break;
+            case "cRaisedD":
+                mainNumber.setText(Math.pow(c, d) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(C ^ D)+");
+                break;
+
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
             case "floorButton":
@@ -458,7 +488,6 @@ public class HelloController {
                 currentResult = Math.floor(currentResult);
                 mainNumber.setText(currentResult + "");
                 break;
-
         }
 
         //This is a VERY IMPORTANT line. 
