@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.numbers.gamma.Gamma;
 
-
 public class HelloController {
     @FXML
     private Text mainNumber, subNumber, variableDisplay;
