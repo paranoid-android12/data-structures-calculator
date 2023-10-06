@@ -1,4 +1,9 @@
-# Advanced Calculator (Data Structures)
+## Advanced Calculator (Data Structures)
+
+### Built With
+JavaFx
+
+### Getting Started
 
 Run this program on HelloController.java if you're using IntelliJ. 
 
