@@ -409,16 +409,16 @@
                   </Pane>
                   <Pane fx:id="setButton" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="SET" textAlignment="CENTER" textFill="WHITE">
+                        <Text fx:id="setButtonText" fill="WHITE" layoutX="5.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SET = OFF" textAlignment="CENTER" wrappingWidth="90.0">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
-                        </Label>
+                        </Text>
                      </children>
                   </Pane>
-                  <Pane fx:id="setButton1" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="setFunction" onMouseClicked="#setFunction" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="FUNCTION" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="TINAPAY" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
@@ -576,7 +576,17 @@
                         <Font size="27.0" />
                      </font>
                   </Text>
-                  <Text fx:id="variableDisplay" fill="#c4c4c4" layoutX="62.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A = 0.0   B = 0.0   C = 0.0   D = 0.0" textAlignment="RIGHT" wrappingWidth="309.4000244140625">
+                  <Text fx:id="variableDisplay" fill="#c4c4c4" layoutX="62.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A = 0.0  B = 0.0  C = 0.0  D = 0.0" textAlignment="RIGHT" wrappingWidth="309.4000244140625">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentFunction" fill="#c4c4c4" layoutX="38.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentFunction1" fill="#c4c4c4" layoutX="12.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="∑ = " wrappingWidth="26.0">
                      <font>
                         <Font size="14.0" />
                      </font>

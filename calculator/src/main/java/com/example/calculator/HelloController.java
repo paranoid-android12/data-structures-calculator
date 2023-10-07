@@ -17,11 +17,13 @@ import org.apache.commons.numbers.gamma.Gamma;
 
 public class HelloController {
     @FXML
-    private Text mainNumber, subNumber, variableDisplay;
-    private Double currentResult = 0.0, a=0.0, b=0.0, c=0.0, d=0.0;
-    private String varToSet = "";
+    private Text mainNumber, subNumber, variableDisplay, setButtonText, currentFunction;
+    private Double currentResult = 0.0;
+    private int a=0, b=0, c=0, d=0;
+    private String varToSet = "", summaFunction="";
     private boolean justOperated = false;
     private boolean justEqualed = false;
+    private boolean setMode = false;
     @FXML
     //Window buttons
     private ImageView minimizeButton, closeButton;
@@ -35,7 +37,7 @@ public class HelloController {
     private Pane aTimesB, aPlusB, aRaisedB, cTimesD, cPlusD, cRaisedD;
 
     //Variables
-    private Pane varA, varB, varC, vard, setButton;
+    private Pane varA, varB, varC, vard, setButton, setFunction;
 
     //Row 0-2 blue buttons
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
@@ -92,37 +94,90 @@ public class HelloController {
         Node node = (Node) source2;
         String id = node.getId();
         String num = mainNumber.getText();
-        String subNum = subNumber.getText();
-        String numPure = num.replaceAll("[^0-9.]", "");
-        switch (id) {
-            case "varA":
-                mainNumber.setText("A = " + numPure);
-                varToSet = "a";
-                break;
-            case "varB":
-                mainNumber.setText("B = " + numPure);
-                varToSet = "b";
-                break;
-            case "varC":
-                mainNumber.setText("C = " + numPure);
-                varToSet = "c";
-                break;
-            case "varD":
-                mainNumber.setText("D = " + numPure);
-                varToSet = "d";
-                break;   
-            case "setButton":
-                if(varToSet.equals("a")){a = Double.parseDouble(numPure);}
-                else if(varToSet.equals("b")){b = Double.parseDouble(numPure);}
-                else if(varToSet.equals("c")){c = Double.parseDouble(numPure);}
-                else if(varToSet.equals("d")){d = Double.parseDouble(numPure);}
-                break;  
+        String letter = id.substring(id.length()-1);
+
+
+        if(id.equals("setButton")){
+            if(setMode){setMode = false; 
+                setButtonText.setText("SET = OFF");
+            }
+            else{setMode = true; 
+                setButtonText.setText("SET = ON");
+            }
         }
-        variableDisplay.setText("A = " + a + "   B = " + b + "   C = " + c + "   D = " + d);
-        justOperated = true;
+        else{
+            if(setMode){
+                switch(letter){
+                    case "A": a = Integer.parseInt(num); break;
+                    case "B": b = Integer.parseInt(num); break;
+                    case "C": c = Integer.parseInt(num); break;
+                    case "D": d = Integer.parseInt(num); break;
+                }
+                justOperated = false;
+            }
+            else{
+                mainNumber.setText(letter);
+                justOperated = false;
+            }
+        }
+        variableDisplay.setText("A = " + a + "  B = " + b + "  C = " + c + "  D = " + d);
     }
 
-    Double summation(Double number){
+    @FXML
+    void setFunction(MouseEvent event){
+        Object source2 = event.getSource();
+        Node node = (Node) source2;
+        String id = node.getId();
+        String num = mainNumber.getText();
+        String subNum = subNumber.getText();
+
+        summaFunction = subNum + num;
+        currentFunction.setText(summaFunction);
+        
+        //Set to initial values.
+        subNumber.setText("");
+        mainNumber.setText("");
+        currentResult = 0.0;
+    }  
+
+    String equationEvaluator(String num){
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "evaluator.py", num);
+            processBuilder.redirectErrorStream(true);
+
+            Process process = processBuilder.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            StringBuilder output = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                output.append(line).append("\n");
+            }
+
+            int exitCode = process.waitFor();
+            if (exitCode == 0) {
+                return output.toString();
+            } else {
+                throw new IOException("Python script execution failed");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    Double summation(){
+        int tempA = a;
+        int tempB = b;
+        String result = "";
+
+        String num = summaFunction.replace("A", tempA+"")
+                     .replace("B", tempB+"")
+                     .replace("C", c+"")
+                     .replace("D", d+"") + "," + tempA + "," + tempB;
+        
+        System.out.println(equationEvaluator(num));
+
         return 0.0;
     }
 
@@ -140,6 +195,7 @@ public class HelloController {
 
         switch(id){
             case "singleSummation":
+                summation();
                 break;
             case "singleProduct":
                 break;
@@ -157,6 +213,12 @@ public class HelloController {
     void equationProcessor(){
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
+
+        if(subNum.equals("")){
+            currentResult = Double.parseDouble(num);
+            return;
+        }
+
         //Lazy solution that just checks the operation by latest char of the subNum
         String operation = (subNum.charAt(subNum.length()-1)) + "";
         
@@ -203,6 +265,12 @@ public class HelloController {
         String subNum = subNumber.getText();
         String digit = id.charAt(id.length()-1) + "";
 
+        if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
+            mainNumber.setText(digit);
+            justOperated = false;
+            return;
+        }
+        
         //Decimal button process
         if(id.equals("decimalButton")){
             if(!num.contains(".")){
@@ -300,9 +368,27 @@ public class HelloController {
             case "modulusButton": symbol = "%"; break;
 
         }
+        if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
+            String letterTemp = num;
+            //If letter is first in the calculation.
+            if(subNum.equals("")){
+                switch(letterTemp){
+                    case "A": currentResult = Double.valueOf(a);
+                    case "B": currentResult = Double.valueOf(b);
+                    case "C": currentResult = Double.valueOf(c);
+                    case "D": currentResult = Double.valueOf(d);
+                }
+            }
+            else{
+                mainNumber.setText(a + "");
+                equationProcessor();
+                mainNumber.setText(letterTemp);
+            }
+            
+        }
 
         //Edge case: Proceeds to normal mode after the user had just clicked an operation after the equal button.
-        if (justEqualed == true){
+        else if (justEqualed == true){
             subNumber.setText(num + symbol);
             justEqualed = false;
             justOperated = true;
@@ -332,7 +418,6 @@ public class HelloController {
         else{ 
             currentResult = Double.parseDouble(num);
         }
-
         //Updates subNumber with new result and operation.
         subNumber.setText(subNum + num + symbol);
 
@@ -354,6 +439,10 @@ public class HelloController {
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
         
+        if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
+            mainNumber.setText(subNum);
+        }
+
         equationProcessor();
         subNumber.setText("");
         mainNumber.setText("" + currentResult);
@@ -371,6 +460,18 @@ public class HelloController {
         String id = node.getId();
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
+        String letter = num;
+        boolean isLetter = false;
+
+        if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
+            isLetter = true;
+            switch(num){
+                case "A": num = a+""; break;
+                case "B": num = b+""; break;
+                case "C": num = c+""; break;
+                case "D": num = d+""; break;
+            }
+        }
         
         switch (id){
             case "factorialButton":
@@ -378,7 +479,7 @@ public class HelloController {
                 mainNumber.setText(Factorize(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + tempNumFactor + "!+");
-                // mainNumber.setText(Factorize(Integer.parseInt(num)) + "");
+                if(isLetter){subNumber.setText(subNum + letter + "!+");}
                 break;
 
             case "rootButton": 
@@ -386,6 +487,7 @@ public class HelloController {
                 mainNumber.setText(Math.sqrt(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "sqrt(" + tempNumRoot + ")+");
+                if(isLetter){subNumber.setText(subNum + "sqrt(" + letter + ")+");}
                 break;
 
             case "cubeRootButton":
@@ -393,6 +495,7 @@ public class HelloController {
                 mainNumber.setText(Math.cbrt(Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "cbrt(" + tempNumCube + ")+");
+                if(isLetter){subNumber.setText(subNum + "cbrt(" + letter + ")+");}
                 break;
 
             case "squareButton":
@@ -400,6 +503,7 @@ public class HelloController {
                 mainNumber.setText((Double.parseDouble(num)) * (Double.parseDouble(num)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + tempNumSquare +  "^2+");
+                if(isLetter){subNumber.setText(subNum + letter +  "^2+");}
                 break;
                 
             case "multipleExpoButton":
@@ -407,6 +511,7 @@ public class HelloController {
                 mainNumber.setText(Math.pow(Double.parseDouble(num), Math.pow(a, b)) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "((" + tempNumMultiSquare +  "^A)^B)+");
+                if(isLetter){subNumber.setText(subNum + "((" + letter +  "^A)^B)+");}
                 break;
 
             case "log2Button":
@@ -414,6 +519,7 @@ public class HelloController {
                 mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(2))) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "log2(" + tempNumLogTwo +  ")+");
+                if(isLetter){subNumber.setText(subNum + "log2(" + letter +  ")+");}
                 break;
 
             case "log10Button":
@@ -421,6 +527,7 @@ public class HelloController {
                 mainNumber.setText(((Math.log(Double.parseDouble(num))) / (Math.log(10))) + "");
                 equationProcessor();
                 subNumber.setText(subNum + "log10(" + tempNumLogTen +  ")+");
+                if(isLetter){subNumber.setText(subNum + "log10(" + letter +  ")+");}
                 break;
 
             case "factorialPlusButton":
@@ -444,6 +551,7 @@ public class HelloController {
                 equationProcessor();
                 subNumber.setText(subNum + "(A * B)+");
                 break;
+                
             case "aPlusB":
                 mainNumber.setText((a + b) + "");
                 equationProcessor();
@@ -483,8 +591,8 @@ public class HelloController {
                 mainNumber.setText(currentResult + "");
                 break;
             case "integerButton":
-                subNumber.setText("int(" + (subNum) + ")+");
-                currentResult = Math.floor(currentResult);
+                subNumber.setText("int(" + (num) + ")+");
+                currentResult = Math.floor(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
         }
