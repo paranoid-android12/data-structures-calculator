@@ -473,18 +473,18 @@ public class HelloController {
 
             //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
             case "floorButton":
-                subNumber.setText("floor(" + (subNum) + ")+");
-                currentResult = Math.floor(currentResult);
+                subNumber.setText("floor(" + (num) + ")+");
+                currentResult = Math.floor(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");  
                 break;
             case "ceilingButton":
-                subNumber.setText("ceil(" + (subNum) + ")+");
-                currentResult = Math.ceil(currentResult);
+                subNumber.setText("ceil(" + (num) + ")+");
+                currentResult = Math.ceil(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
             case "integerButton":
-                subNumber.setText("int(" + (subNum) + ")+");
-                currentResult = Math.floor(currentResult);
+                subNumber.setText("int(" + (num) + ")+");
+                currentResult = Math.floor(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
         }
