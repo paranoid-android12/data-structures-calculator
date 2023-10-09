@@ -140,9 +140,11 @@ public class HelloController {
         currentResult = 0.0;
     }  
 
-    String equationEvaluator(String num){
+    String equationEvaluator(String num, int type){
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("python", "evaluator.py", num);
+            ProcessBuilder processBuilder = new ProcessBuilder("python", "singleEval.py", num);
+            if(type == 3 || type == 4){processBuilder = new ProcessBuilder("python", "doubleEval.py", num);}
+
             processBuilder.redirectErrorStream(true);
 
             Process process = processBuilder.start();
@@ -155,6 +157,7 @@ public class HelloController {
             }
 
             int exitCode = process.waitFor();
+            System.out.println(output);
             if (exitCode == 0) {
                 return output.toString();
             } else {
@@ -166,23 +169,29 @@ public class HelloController {
         }
     }
 
-    Double summation(){
+    Double summationProd(int type){
         int tempA = a;
         int tempB = b;
-        String result = "";
 
-        String num = summaFunction.replace("A", tempA+"")
+        String num = summaFunction.replace("A", "i")
                      .replace("B", tempB+"")
                      .replace("C", c+"")
-                     .replace("D", d+"") + "," + tempA + "," + tempB;
-        
-        System.out.println(equationEvaluator(num));
-
-        return 0.0;
+                     .replace("D", d+"") + "," + tempA + "," + tempB + "," + type;
+        System.out.println("ANS: " + equationEvaluator(num, type));
+        return Double.parseDouble(equationEvaluator(num, type));
     }
 
-    Double product(Double number){
-        return 0.0;
+    Double marriedSummationProd(int type){
+        int tempC = c;
+        int tempD = d;
+        int outA = a;
+        int outB = b;
+
+        String num = summaFunction.replace("A", "i")
+                .replace("B", outB+"")
+                .replace("C", "x")
+                .replace("D", tempD+"") + "," + outA + "," + outB + "," + tempC + "," + tempD + "," + type;
+        return Double.parseDouble(equationEvaluator(num, type));
     }
 
     @FXML
@@ -195,17 +204,31 @@ public class HelloController {
 
         switch(id){
             case "singleSummation":
-                summation();
+                Double result1 = summationProd(1);
+                mainNumber.setText(result1+"");
+                equationProcessor();
+                subNumber.setText(subNum + result1 + "+");
                 break;
             case "singleProduct":
+                Double result2 = summationProd(2);
+                mainNumber.setText(result2+"");
+                equationProcessor();
+                subNumber.setText(subNum + result2 + "+");
                 break;
             case "marriedSummation":
+                Double result3 = marriedSummationProd(3);
+                mainNumber.setText(result3+"");
+                equationProcessor();
+                subNumber.setText(subNum + result3 + "+");
                 break;
             case "marriedProduct":
-                break;
-
-            
+                Double result4 = marriedSummationProd(4);
+                mainNumber.setText(result4+"");
+                equationProcessor();
+                subNumber.setText(subNum + result4 + "+");
+                break;   
         }
+        justOperated = true;
     }
 
 
@@ -345,8 +368,6 @@ public class HelloController {
         // return 0.0;
         return Gamma.value(num + 1);
     }
-
-
     //Event for basic operands with same functionalities (operations other than the four operations are also included long as it doesn't merit a unique "mode" of some sort)
     @FXML
     void basicOperations(MouseEvent event){

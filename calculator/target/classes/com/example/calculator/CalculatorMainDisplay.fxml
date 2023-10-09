@@ -418,7 +418,7 @@
                   </Pane>
                   <Pane fx:id="setFunction" onMouseClicked="#setFunction" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="TINAPAY" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="FUNCTION" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Calibri" size="18.0" />
                            </font>
