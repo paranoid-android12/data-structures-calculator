@@ -527,7 +527,8 @@
                               <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
-                     </children></Pane>
+                     </children>
+                  </Pane>
                   <Pane fx:id="cTimesD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="C * D" textAlignment="CENTER" textFill="WHITE">
@@ -558,7 +559,8 @@
                               <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
-                     </children></Pane>
+                     </children>
+                  </Pane>
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -576,17 +578,17 @@
                         <Font size="27.0" />
                      </font>
                   </Text>
-                  <Text fx:id="variableDisplay" fill="#c4c4c4" layoutX="62.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A = 0.0  B = 0.0  C = 0.0  D = 0.0" textAlignment="RIGHT" wrappingWidth="309.4000244140625">
+                  <Text fx:id="variableDisplay" fill="#c4c4c4" layoutX="62.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A = 0  B = 0  C = 0  D = 0" textAlignment="RIGHT" wrappingWidth="309.4000244140625">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="currentFunction" fill="#c4c4c4" layoutX="38.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                  <Text fx:id="currentFunction" fill="#c4c4c4" layoutX="43.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="322.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="currentFunction1" fill="#c4c4c4" layoutX="12.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="∑ = " wrappingWidth="26.0">
+                  <Text fx:id="currentFunction1" fill="#c4c4c4" layoutX="12.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fn = " wrappingWidth="43.0">
                      <font>
                         <Font size="14.0" />
                      </font>

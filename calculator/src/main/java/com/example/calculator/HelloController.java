@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -139,6 +140,21 @@ public class HelloController {
         mainNumber.setText("");
         currentResult = 0.0;
     }  
+    void checkSize(){
+        int len = mainNumber.getText().length();
+        int subLen = subNumber.getText().length();
+
+        if(len <= 15){mainNumber.setFont(Font.font(40));}
+        else if(len > 15 && len <= 25){mainNumber.setFont(Font.font(25));}
+        else if (len > 25 && len <= 45){mainNumber.setFont(Font.font(15));}
+        else{mainNumber.setFont(Font.font(10));}
+
+        if(subLen <= 20){subNumber.setFont(Font.font(27));}
+        else if(subLen > 20 && subLen <= 32){subNumber.setFont(Font.font(18));}
+        else if(subLen > 32 && subLen <= 45){subNumber.setFont(Font.font(12));}
+
+    }
+
 
     String equationEvaluator(String num, int type){
         try {
@@ -318,6 +334,7 @@ public class HelloController {
         else { 
             mainNumber.setText(num + digit);
         }
+        checkSize();
     }
 
     @FXML
@@ -361,6 +378,7 @@ public class HelloController {
         }
         justOperated = false;
         justEqualed = false;
+        checkSize();
     }
 
     //Allows factorial for both integer and complex numbers
@@ -448,6 +466,7 @@ public class HelloController {
 
         //EXPLANATION OF THIS LINE IS ON uniqueOperations function at the bottom.
         justOperated = true;
+        checkSize();
     }
 
     //Equal button (simplified this to just display and i removed stacking because it's hell to program)
@@ -469,6 +488,7 @@ public class HelloController {
         mainNumber.setText("" + currentResult);
 
         justEqualed = true;
+        checkSize();
     }
 
     //Functions for complex buttons with unique "modes" or properties that makes me want to ywahoo myself off the building
@@ -616,7 +636,9 @@ public class HelloController {
                 currentResult = Math.floor(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
+            
         }
+
 
         //This is a VERY IMPORTANT line. 
         //When the user types a number and clicks a new operation, it shows the current result of the calculations so far on the mainNumber.
@@ -628,6 +650,6 @@ public class HelloController {
         //This becomes false when the user enters a number.
         justOperated = true;
         System.out.println(currentResult);
+        checkSize();
     }
-
 }
