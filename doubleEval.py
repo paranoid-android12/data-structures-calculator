@@ -19,6 +19,7 @@ try:
     tempD = int(variables[4])
     type = int(variables[5])
     
+    func = func.replace("^", "**")
 
     
     if len(variables) != 6:

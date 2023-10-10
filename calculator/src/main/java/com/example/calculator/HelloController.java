@@ -155,7 +155,6 @@ public class HelloController {
 
     }
 
-
     String equationEvaluator(String num, int type){
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("python", "singleEval.py", num);
@@ -289,8 +288,6 @@ public class HelloController {
         System.out.println("");
         return;
     }
-
-
 
     @FXML
     //Event for button 0 - 9 (Viacrusis)
