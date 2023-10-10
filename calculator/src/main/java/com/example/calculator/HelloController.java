@@ -573,7 +573,7 @@ public class HelloController {
                 double tempB = Factorize(b);
                 mainNumber.setText((tempA + tempB) + "");
                 equationProcessor();
-                subNumber.setText(subNum + "(a!+b!)");
+                subNumber.setText(subNum + "(a!+b!)+");
                 break;
 
             case "factorialDivideButton":
@@ -581,7 +581,7 @@ public class HelloController {
                 double tempDivB = Factorize(b);
                 mainNumber.setText((tempDivA / tempDivB) + "");
                 equationProcessor();
-                subNumber.setText(subNum + "(a!/b!)");
+                subNumber.setText(subNum + "(a!/b!)+");
                 break;
 
             case "aTimesB":
