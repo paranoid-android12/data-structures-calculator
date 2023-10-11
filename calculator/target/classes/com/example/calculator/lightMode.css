@@ -39,16 +39,16 @@
 }
 
 .buttonBasicFunc{
-    -fx-background-color: rgb(41,44,46, 0.4);
-    -fx-border-color: rgb(70, 70, 70);
+    -fx-background-color: #baa6a5;
+    -fx-border-color: #b7a2a19b;
     -fx-border-style: solid;
     -fx-border-radius: 25;
     -fx-background-radius: 25;
 }
 
 .buttonBasicFunc:hover{
-    -fx-background-color: rgb(56, 60, 63);
-    -fx-border-color: rgb(91, 91, 91);
+    -fx-background-color: #b7a2a19b;
+    -fx-border-color: #baa6a5;
 }
 
 .buttonNum{
