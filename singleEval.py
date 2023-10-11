@@ -5,12 +5,16 @@ import re
 def replace_fact(match):
     x = int(match.group(1))
     return f'math.factorial({x})'
+
+def replace_cbrt(match):
+    x = int(match.group(1))
+    return f'{x}**(1/3)'
     
 
 try:
     #Initializes mainNum
     mainNum = sys.argv[1]
-    # mainNum = "5+67+8!+5!,1,3,1"
+    # mainNum = "cbrt(91)+67+8!+5!,1,3,1"
     variables = mainNum.split(',')  # Split the input string using the comma delimiter
     sum = 0
     prod = 1
@@ -20,11 +24,13 @@ try:
     type = int(variables[3])
     
     #EDGE CASES
-    fact = r'(\d+)!'
+    fact = r'([0-9xi]+)!'
+    cbrt = r'cbrt\((\d+(\.\d+)?|[xi])\)'
     func = func.replace("^", "**")
     func = re.sub(fact, replace_fact, func)
+    func = re.sub(cbrt, replace_cbrt, func)
     
-
+    print()
     
     if len(variables) != 4:
         raise ValueError("Expected 4 variables")
