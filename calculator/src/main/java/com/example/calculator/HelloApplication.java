@@ -30,6 +30,9 @@ public class HelloApplication extends Application {
             stage.setY(mouseEvent.getScreenY() - y);
         });
 
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource("WindowStyle.css").toExternalForm());
+
         stage.show();
     }
 
