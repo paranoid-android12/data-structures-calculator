@@ -1,10 +1,16 @@
 import sys
 import math
+import re
+
+def replace_fact(match):
+    x = int(match.group(1))
+    return f'math.factorial({x})'
+    
 
 try:
     #Initializes mainNum
     mainNum = sys.argv[1]
-    # mainNum = "5^2,1,10,2"
+    # mainNum = "5+67+8!+5!,1,3,1"
     variables = mainNum.split(',')  # Split the input string using the comma delimiter
     sum = 0
     prod = 1
@@ -13,7 +19,11 @@ try:
     tempB = int(variables[2])
     type = int(variables[3])
     
+    #EDGE CASES
+    fact = r'(\d+)!'
     func = func.replace("^", "**")
+    func = re.sub(fact, replace_fact, func)
+    
 
     
     if len(variables) != 4:

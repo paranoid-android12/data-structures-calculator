@@ -1,5 +1,10 @@
 import sys
 import math
+import re
+
+def replace_fact(match):
+    x = int(match.group(1))
+    return f'math.factorial({x})'
 
 try:
     #Initializes mainNum
@@ -20,7 +25,10 @@ try:
     tempD = int(variables[4])
     type = int(variables[5])
     
+    #EDGE CASES
+    fact = r'(\d+)!'
     func = func.replace("^", "**")
+    func = re.sub(fact, replace_fact, func)
 
     
     if len(variables) != 6:
