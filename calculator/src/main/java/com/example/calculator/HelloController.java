@@ -140,9 +140,11 @@ public class HelloController {
         mainNumber.setText("");
         currentResult = 0.0;
     }  
+    
     void checkSize(){
         int len = mainNumber.getText().length();
         int subLen = subNumber.getText().length();
+        System.out.println("Main: " + len + "      Sub: " + subLen);
 
         if(len <= 15){mainNumber.setFont(Font.font(40));}
         else if(len > 15 && len <= 25){mainNumber.setFont(Font.font(25));}
@@ -245,7 +247,6 @@ public class HelloController {
         }
         justOperated = true;
     }
-
 
     //Processes currentResult and value of current display in mainNum
     void equationProcessor(){
@@ -484,6 +485,11 @@ public class HelloController {
         subNumber.setText("");
         mainNumber.setText("" + currentResult);
 
+        String tempHold = mainNumber.getText();
+        //Displays whole number if there's no decimal in answer
+        if(Double.parseDouble(tempHold) % 1 == 0){mainNumber.setText(String.format("%.0f", Double.parseDouble(tempHold)));}
+        else{mainNumber.setText(String.format("%.6f", Double.parseDouble(tempHold)));}
+        
         justEqualed = true;
         checkSize();
     }
@@ -617,14 +623,13 @@ public class HelloController {
                 break;
 
 
-            //Weirdly enough, these three cases essentially has the same functionalities. IDK why they included then all.
             case "floorButton":
-                subNumber.setText("floor(" + (subNum) + ")+");
+                subNumber.setText("floor(" + (subNum.substring(0, subNum.length()-1)) + ")+");
                 currentResult = Math.floor(currentResult);
                 mainNumber.setText(currentResult + "");  
                 break;
             case "ceilingButton":
-                subNumber.setText("ceil(" + (subNum) + ")+");
+                subNumber.setText("ceil(" + (subNum.substring(0, subNum.length()-1)) + ")+");
                 currentResult = Math.ceil(currentResult);
                 mainNumber.setText(currentResult + "");
                 break;
@@ -633,8 +638,11 @@ public class HelloController {
                 currentResult = Math.floor(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
-            
         }
+        String tempHold = mainNumber.getText();
+        //Displays whole number if there's no decimal in answer
+        if(Double.parseDouble(tempHold) % 1 == 0){mainNumber.setText(String.format("%.0f", Double.parseDouble(tempHold)));}
+        else{mainNumber.setText(String.format("%.6f", Double.parseDouble(tempHold)));}
 
 
         //This is a VERY IMPORTANT line. 
