@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="420.0" stylesheets="@WindowStyle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculator.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculator.HelloController">
    <children>
       <Pane prefHeight="32.0" prefWidth="420.0" translateZ="1.0">
          <children>
@@ -24,13 +24,18 @@
                   <Image url="@icon/hide.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="userModeButton" fitHeight="19.0" fitWidth="19.0" layoutX="26.0" layoutY="5.0" onMouseClicked="#toggleMode" onMouseEntered="#opacityImage" onMouseExited="#opacityImageRemove" opacity="0.8" pickOnBounds="true" preserveRatio="true" styleClass="imageButtons">
+               <image>
+                  <Image url="@icon/whiteMoon.png" />
+               </image>
+            </ImageView>
          </children></Pane>
-      <Pane layoutX="6.0" layoutY="31.0" prefHeight="623.0" prefWidth="408.0" styleClass="backgroundPane" stylesheets="@WindowStyle.css">
+      <Pane layoutX="6.0" layoutY="31.0" prefHeight="623.0" prefWidth="408.0" styleClass="backgroundPane" >
          <children>
-            <Pane layoutX="184.0" layoutY="163.0" prefHeight="214.0" prefWidth="43.0" scaleZ="-10.0" styleClass="operatorContainer" stylesheets="@WindowStyle.css" translateZ="-10.0" />
+            <Pane layoutX="184.0" layoutY="163.0" prefHeight="214.0" prefWidth="43.0" scaleZ="-10.0" styleClass="operatorContainer" translateZ="-10.0" />
             <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" hgap="14.0" layoutX="-22.0" layoutY="155.0" prefHeight="508.0" prefWidth="454.0" vgap="14.0">
                <children>
-                  <Pane fx:id="numDelete" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numDelete" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="DEL" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -39,7 +44,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numErase" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numErase" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="AC" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -48,7 +53,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numInvert" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numInvert" onMouseClicked="#delAcInvert" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="+/-" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -57,7 +62,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="plusButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="plusButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="+" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -66,7 +71,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="floorButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="floorButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="FLR" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -75,7 +80,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="ceilingButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="ceilingButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="CEIL" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -84,7 +89,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="integerButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="integerButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="INT" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -93,7 +98,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton7" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton7" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="7" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -102,7 +107,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton8" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton8" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="8" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -111,7 +116,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton9" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton9" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="9" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -120,7 +125,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="subButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="subButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="-" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -129,7 +134,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="floordivButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="floordivButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="//" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -138,7 +143,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="modulusButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="modulusButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="\%" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -147,7 +152,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="factorialButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="N!" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -156,7 +161,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton4" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton4" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="4" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -165,7 +170,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton5" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton5" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="5" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -174,7 +179,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton6" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton6" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="6" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -183,7 +188,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="prodButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="prodButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="*" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -192,7 +197,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="rootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="rootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="√" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -201,7 +206,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="cubeRootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cubeRootButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="∛" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -210,7 +215,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="singleSummation" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="singleSummation" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="43.0" prefWidth="26.0" text="∑" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -229,7 +234,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton1" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton1" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="1" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -238,7 +243,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton2" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton2" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="2" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -247,7 +252,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton3" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton3" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="3" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -256,7 +261,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="divButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="divButton" onMouseClicked="#basicOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicOperator">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="/" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -265,7 +270,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="squareButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="squareButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="x²" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -274,7 +279,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="multipleExpoButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="multipleExpoButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="9.0" prefHeight="26.0" prefWidth="19.0" text="x" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -293,7 +298,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="singleProduct" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="singleProduct" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="43.0" prefWidth="26.0" text="Π" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -312,7 +317,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="numButton0" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="numButton0" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonNum">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" styleClass="numText" text="0" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -321,7 +326,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="equalButton" onMouseClicked="#equalOperator" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="equalButton" onMouseClicked="#equalOperator" prefHeight="43.0" prefWidth="100.0" styleClass="buttonEquals">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="=" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -330,7 +335,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="decimalButton" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="decimalButton" onMouseClicked="#clickedNum" prefHeight="43.0" prefWidth="43.0" styleClass="buttonBasicFunc">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="." textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -339,7 +344,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="marriedSummation" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="marriedSummation" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="-3.0" prefHeight="43.0" prefWidth="26.0" text="∑" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -373,7 +378,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="marriedProduct" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="marriedProduct" onMouseClicked="#summationProduct" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1.0" prefHeight="43.0" prefWidth="26.0" text="Π" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -407,7 +412,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="setButton" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="setButton" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="SET" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -416,7 +421,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="setButton1" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="setButton1" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="100.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="100.0" text="FUNCTION" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -425,7 +430,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="log2Button" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="log2Button" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="log₂ x" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -434,7 +439,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="log10Button" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="log10Button" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="log x" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -443,7 +448,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="varA" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="varA" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="A" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -452,7 +457,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="varB" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="varB" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="B" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -461,7 +466,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="varC" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="varC" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="C" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -470,7 +475,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="varD" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="varD" onMouseClicked="#setVariables" prefHeight="43.0" prefWidth="43.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="43.0" text="D" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -479,7 +484,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="factorialPlusButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialPlusButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="a! + b!" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -488,7 +493,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="factorialDivideButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="factorialDivideButton" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="71.5" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="72.0" text="a! / b!" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -497,7 +502,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="aTimesB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="aTimesB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="A * B" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -506,7 +511,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="aPlusB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="aPlusB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="A + B" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -515,7 +520,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="aRaisedB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="aRaisedB" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="9.0" prefHeight="26.0" prefWidth="10.0" text="A" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -528,7 +533,7 @@
                            </font>
                         </Label>
                      </children></Pane>
-                  <Pane fx:id="cTimesD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cTimesD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="C * D" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -537,7 +542,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="cPlusD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cPlusD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="53.0" text="C + D" textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -546,7 +551,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="cRaisedD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx" stylesheets="@WindowStyle.css">
+                  <Pane fx:id="cRaisedD" onMouseClicked="#uniqueOperations" prefHeight="43.0" prefWidth="53.0" styleClass="buttonComplx">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" prefHeight="43.0" prefWidth="19.0" text="C " textAlignment="CENTER" textFill="WHITE">
                            <font>
@@ -564,7 +569,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </FlowPane>
-            <Pane layoutX="10.0" layoutY="7.0" opacity="0.77" prefHeight="146.0" prefWidth="389.0" styleClass="buttonNum" stylesheets="@WindowStyle.css">
+            <Pane layoutX="10.0" layoutY="7.0" opacity="0.77" prefHeight="146.0" prefWidth="389.0" styleClass="buttonNum">
                <children>
                   <Text fx:id="mainNumber" fill="WHITE" layoutX="12.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="365.7366943359375">
                      <font>

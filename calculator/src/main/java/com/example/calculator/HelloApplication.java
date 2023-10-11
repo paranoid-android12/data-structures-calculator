@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     double x, y = 0;
+    
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CalculatorMainDisplay.fxml"));
@@ -30,10 +32,17 @@ public class HelloApplication extends Application {
             stage.setY(mouseEvent.getScreenY() - y);
         });
 
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource("WindowStyle.css").toExternalForm());
+
         stage.show();
     }
 
     public static void main(String[] args) {
         launch();
     }
+
+
+
+    
 }

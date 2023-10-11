@@ -2,6 +2,7 @@ package com.example.calculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -11,7 +12,6 @@ import javafx.stage.Stage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-// import org.apache.commons.numbers.gamma.Gamma;
 
 import org.apache.commons.numbers.gamma.Gamma;
 
@@ -22,10 +22,10 @@ public class HelloController {
     private String varToSet = "";
     private boolean justOperated = false;
     private boolean justEqualed = false;
+    private boolean isDark = true;
     @FXML
     //Window buttons
-    private ImageView minimizeButton, closeButton;
-
+    private ImageView minimizeButton, closeButton, userModeButton;
     //0-9 Buttons
     private Pane numButton1, numButton2, numButton3, numButton4, numButton5, numButton6, numButton7, numButton8, numButton9, numButton0, numDelete, numErase, numInvert, decimalButton;
     //Operation Buttons
@@ -40,7 +40,24 @@ public class HelloController {
     //Row 0-2 blue buttons
     private Pane floorButton, ceilingButton, integerButton, floordivButton, modulusButton, factorialButton;
 
-    //For exit and minimize button design
+
+    private void setStylesheet(Scene scene, String stylesheet) {
+        scene.getStylesheets().clear();
+        scene.getStylesheets().add(getClass().getResource(stylesheet).toExternalForm());
+    }
+
+    @FXML
+    void toggleMode(MouseEvent event){
+        Scene scene = userModeButton.getScene();
+        if(isDark){
+            setStylesheet(scene, "WindowStyle.css");
+        } else {
+            setStylesheet(scene, "lightMode.css");
+        }
+        isDark = !isDark;
+    }
+
+
     @FXML
     void opacityImage(MouseEvent event){
         Object source2 = event.getSource();
@@ -50,8 +67,10 @@ public class HelloController {
         if(id.equals("closeButton")){
             closeButton.setOpacity(1);
         }
-        else{
+        else if(id.equals("minimizeButton")){
             minimizeButton.setOpacity(1);
+        } else {
+            userModeButton.setOpacity(1);
         }
     }
     @FXML
@@ -63,10 +82,13 @@ public class HelloController {
         if(id.equals("closeButton")){
             closeButton.setOpacity(0.8);
         }
-        else{
+        else if(id.equals("minimizeButton")){
             minimizeButton.setOpacity(0.8);
+        } else {
+            userModeButton.setOpacity(0.8);
         }
     }
+    
     @FXML
     void windowButton(MouseEvent event){
         Object source2 = event.getSource();
@@ -84,6 +106,7 @@ public class HelloController {
         }
         // do what you have to do
     }
+
 
     @FXML
     void setVariables(MouseEvent event){
