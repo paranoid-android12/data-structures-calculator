@@ -29,7 +29,7 @@
 }
 
 .buttonBasicOperator:hover{
-    -fx-background-color: rgba(255, 255, 255, 0.157);
+    -fx-background-color: rgb(41,44,46, 0.7);
     -fx-background-radius: 25;
 }
 
@@ -47,8 +47,8 @@
 }
 
 .buttonBasicFunc:hover{
-    -fx-background-color: rgba(186, 166, 165, 0.7);
-    -fx-border-color: rgba(183, 162, 161, 0.61);
+    -fx-background-color: rgb(56, 60, 63);
+    -fx-border-color: rgb(91, 91, 91);
 }
 
 .buttonNum{
@@ -58,8 +58,8 @@
 }
 
 .buttonNum:hover{
-    -fx-background-color: rgba(183, 162, 161, 0.31);
-    -fx-border-color: rgba(186, 166, 165, 0.8);
+    -fx-background-color: rgb(43, 47, 53);
+    -fx-border-color: rgb(65, 70, 80);
 }
 
 .buttonComplx {
