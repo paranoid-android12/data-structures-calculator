@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 // import org.apache.commons.numbers.gamma.Gamma;
-
 import org.apache.commons.numbers.gamma.Gamma;
 
 public class HelloController {
@@ -625,36 +624,32 @@ public class HelloController {
                 break;
 
             case "aTimesB":
-                mainNumber.setText((a * b) + "");
+                mainNumber.setText((Factorize(a)) / (Factorize(a - b)) + "");
                 equationProcessor();
-                subNumber.setText(subNum + "(A * B)+");
+                subNumber.setText(subNum + "(A!/(A-B)!)+");
                 break;
                 
-            case "aPlusB":
-                mainNumber.setText((a + b) + "");
-                equationProcessor();
-                subNumber.setText(subNum + "(A + B)+");
-                break;
+                
             case "aRaisedB":
-                mainNumber.setText(Math.pow(a, b) + "");
+            System.out.println(Math.pow(a, b));
+            mainNumber.setText(Math.pow(a, b) + "");
+            equationProcessor();
+            subNumber.setText(subNum + "(A ^ B)+");
+            break;
+
+            case "aPlusB":
+                mainNumber.setText((Factorize(a)) / (Factorize(b) * (Factorize(a-b))) + "");
                 equationProcessor();
-                subNumber.setText(subNum + "(A ^ B)+");
+                subNumber.setText(subNum + "(A!/B!(A-B)!))+");
                 break;
+
             case "cTimesD":
-                mainNumber.setText((c * d) + "");
+                mainNumber.setText((Factorize(b+a-1)) / ((Factorize(b)) * (Factorize(a-1))) + "");
                 equationProcessor();
-                subNumber.setText(subNum + "(C * D)+");
+                subNumber.setText(subNum + "((B+A-1)!/(B!((A-1)!))+");
                 break;
-            case "cPlusD":
-                mainNumber.setText((c + d) + "");
-                equationProcessor();
-                subNumber.setText(subNum + "(C + D)+");
-                break;
-            case "cRaisedD":
-                mainNumber.setText(Math.pow(c, d) + "");
-                equationProcessor();
-                subNumber.setText(subNum + "(C ^ D)+");
-                break;
+
+
 
 
             case "floorButton":
