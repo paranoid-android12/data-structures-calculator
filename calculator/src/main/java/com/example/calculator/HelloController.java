@@ -278,6 +278,10 @@ public class HelloController {
                 subNumber.setText(subNum + result4 + "+");
                 break;   
         }
+        //Displays whole number if there's no decimal in answer
+        if(currentResult % 1 == 0){mainNumber.setText(String.format("%.0f", currentResult));}
+        else{mainNumber.setText(String.format("%.6f", currentResult));}
+
         justOperated = true;
     }
 
@@ -285,6 +289,7 @@ public class HelloController {
     void equationProcessor(){
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
+        // System.out.println("Currentresult: " + currentResult + "      mainNum: " + num);
 
         if(subNum.equals("")){
             currentResult = Double.parseDouble(num);
@@ -298,7 +303,18 @@ public class HelloController {
         switch (operation){
             case "+": currentResult = currentResult + Double.parseDouble(num); break;
             case "-": currentResult = currentResult - Double.parseDouble(num); break;
-            case "*": currentResult = currentResult * Double.parseDouble(num); break;
+            case "*": //Case for both multiplication and pow
+                //Raise operation
+                if(subNum.charAt(subNum.length()-2) == '*'){
+                        Double tempResult = Math.pow(currentResult , Double.parseDouble(num));
+                        currentResult = tempResult;
+                }
+
+                //Normal multiplication
+                else{
+                    currentResult = currentResult * Double.parseDouble(num);
+                }
+                break;
             case "/": //Case for both division and floor division
                 //Floor division
                 if(subNum.charAt(subNum.length()-2) == '/'){
@@ -436,21 +452,30 @@ public class HelloController {
             case "divButton": symbol = "/"; break;
             case "floordivButton": symbol = "//"; break;
             case "modulusButton": symbol = "%"; break;
-
+            case "squareButton": symbol = "**"; break;
         }
+        //If operated a variable
         if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
             String letterTemp = num;
-            //If letter is first in the calculation.
+            //If nothing yet in the substing
             if(subNum.equals("")){
                 switch(letterTemp){
-                    case "A": currentResult = Double.valueOf(a);
-                    case "B": currentResult = Double.valueOf(b);
-                    case "C": currentResult = Double.valueOf(c);
-                    case "D": currentResult = Double.valueOf(d);
+                    case "A": currentResult = Double.valueOf(a); break;
+                    case "B": currentResult = Double.valueOf(b); break;
+                    case "C": currentResult = Double.valueOf(c); break;
+                    case "D": currentResult = Double.valueOf(d); break;
                 }
             }
+            //If substring has content, just instantiate default mainNum display based on previous letter
             else{
-                mainNumber.setText(a + "");
+                System.out.println("weird here");
+                // mainNumber.setText(a + "");
+                switch(letterTemp){
+                    case "A": mainNumber.setText(Double.valueOf(a)+""); break;
+                    case "B": mainNumber.setText(Double.valueOf(b)+""); break;
+                    case "C": mainNumber.setText(Double.valueOf(c)+""); break;
+                    case "D": mainNumber.setText(Double.valueOf(d)+""); break;
+                }
                 equationProcessor();
                 mainNumber.setText(letterTemp);
             }
@@ -510,8 +535,18 @@ public class HelloController {
         String num = mainNumber.getText();
         String subNum = subNumber.getText();
         
+        // if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
+        //     mainNumber.setText(subNum);
+        // }
+
         if(num.equals("A") || num.equals("B") || num.equals("C") || num.equals("D")){
-            mainNumber.setText(subNum);
+            String letterTemp = num;
+                switch(letterTemp){
+                    case "A": mainNumber.setText(Double.valueOf(a)+"");  break;
+                    case "B": mainNumber.setText(Double.valueOf(b)+"");  break; 
+                    case "C": mainNumber.setText(Double.valueOf(c)+"");  break;
+                    case "D": mainNumber.setText(Double.valueOf(d)+"");  break;
+                }
         }
 
         equationProcessor();
@@ -631,10 +666,10 @@ public class HelloController {
                 
                 
             case "aRaisedB":
-            System.out.println(Math.pow(a, b));
-            mainNumber.setText(Math.pow(a, b) + "");
-            equationProcessor();
-            subNumber.setText(subNum + "(A ^ B)+");
+                System.out.println(Math.pow(a, b));
+                mainNumber.setText(Math.pow(a, b) + "");
+                equationProcessor();
+                subNumber.setText(subNum + "(A ^ B)+");
             break;
 
             case "aPlusB":
@@ -649,26 +684,41 @@ public class HelloController {
                 subNumber.setText(subNum + "((B+A-1)!/(B!((A-1)!))+");
                 break;
 
-
-
-
             case "floorButton":
-                subNumber.setText("floor(" + (subNum.substring(0, subNum.length()-1)) + ")+");
-                currentResult = Math.floor(currentResult);
-                mainNumber.setText(currentResult + "");  
+                subNumber.setText("flr(" + (num) + ")+");
+                currentResult = Math.floor(Double.parseDouble(num));
+                mainNumber.setText(currentResult + "");
                 break;
             case "ceilingButton":
-                subNumber.setText("ceil(" + (subNum.substring(0, subNum.length()-1)) + ")+");
-                currentResult = Math.ceil(currentResult);
+                subNumber.setText("ceil(" + (num) + ")+");
+                currentResult = Math.ceil(Double.parseDouble(num));
                 mainNumber.setText(currentResult + "");
                 break;
             case "integerButton":
                 subNumber.setText("int(" + (num) + ")+");
-                currentResult = Math.floor(Double.parseDouble(num));
+                currentResult = Double.parseDouble(String.format("%.0f", Double.parseDouble(num)));
                 mainNumber.setText(currentResult + "");
                 break;
+
+
+            // case "floorButton":
+            //     subNumber.setText("floor(" + (subNum.substring(0, subNum.length()-1)) + ")+");
+            //     currentResult = Math.floor(currentResult);
+            //     mainNumber.setText(currentResult + "");  
+            //     break;
+            // case "ceilingButton":
+            //     subNumber.setText("ceil(" + (subNum.substring(0, subNum.length()-1)) + ")+");
+            //     currentResult = Math.ceil(currentResult);
+            //     mainNumber.setText(currentResult + "");
+            //     break;
+            // case "integerButton":
+            //     subNumber.setText("int(" + (num) + ")+");
+            //     currentResult = Math.floor(Double.parseDouble(num));
+            //     mainNumber.setText(currentResult + "");
+            //     break;
         }
         String tempHold = mainNumber.getText();
+        System.out.println(tempHold);
         //Displays whole number if there's no decimal in answer
         if(Double.parseDouble(tempHold) % 1 == 0){mainNumber.setText(String.format("%.0f", Double.parseDouble(tempHold)));}
         else{mainNumber.setText(String.format("%.6f", Double.parseDouble(tempHold)));}
